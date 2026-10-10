@@ -10,7 +10,7 @@ allowed-tools: WebFetch, Read, Write, Edit
 
 For each source in **$ARGUMENTS**:
 
-1. Open it and save the relevant text to `sources/S###-<short-name>.md`, with the URL and the date it was accessed at the top. Use the next free source ID from `logs/evidence-log.md`.
+1. Open it and save the relevant text to `sources/S###-<short-name>.md`. At the top, write: the URL, the date it was accessed, the format (web page, PDF, video transcript), what was actually read (whole text, some sections, abstract only), and who chose it (the team member's role). Use the next free source ID from `logs/evidence-log.md`. If you cannot read the text (a blocked page, an unreadable PDF, a video), say so and ask a team member to save the text by hand, following `wiki/README.md`.
 2. Score it 1–5 on authority, recency, specificity, verifiability and transparency, with one reason per score.
 3. Write one appraisal line: who says it, why they are worth believing, and the limitation.
 4. Extract claims:

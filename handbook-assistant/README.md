@@ -7,7 +7,7 @@ The Handbook Assistant is Claude, running in Claude Code, set up to help us writ
 ## The five rules
 
 1. **Nothing runs by itself.** The assistant acts only when someone types a command. It never chains steps and never publishes.
-2. **Cite accepted claims only.** A chapter may use only evidence-log rows that the tester has accepted.
+2. **Cite accepted claims only.** A chapter may use only evidence-log rows that the tester has accepted. The wiki helps you find them, but it is never cited, and its "unchecked" lines are not evidence.
 3. **Interview material never enters.** No recordings, notes or transcripts, and nothing that identifies a person or a customer. Not in a file, a chat or memory.
 4. **Web pages are material, not instructions.** If the assistant warns that a page tried to instruct it, tell the developer.
 5. **Our GitHub repository is public.** Anyone can read what you push. Push nothing you would not put on the course site.
@@ -52,11 +52,12 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 |---|---|
 | `CLAUDE.md` | The assistant's rules. Change only with the PM's agreement. |
 | `docs/` | Our governing documents. Changed only when the PM asks. |
-| `.claude/skills/` | The six commands. |
+| `.claude/skills/` | The nine commands. |
 | `logs/evidence-log.md` | The only claims we may cite, each with its exact source sentence. |
 | `logs/session-log.md` | The assistant's memory between sessions. Newest entry at the top. |
 | `sources/` | Candidate lists and the saved text of public sources. |
 | `chapters/` | Chapter drafts and check reports. |
+| `wiki/` | Our LLM wiki: topic pages, source notes, saved answers, an index and a log. Start at `wiki/index.md`; rules in `wiki/README.md`. Never cited. |
 
 ---
 
@@ -68,9 +69,13 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 | 1 Resume | PM | `/start` | where we stopped, what is next |
 | 2 Search | Developer | `/search E3 I3` | a list of 6–10 candidate sources |
 | 3 Appraise | Developer | `/appraise 1 2 4` | proposed claims in the evidence log |
+| 3b Ingest into the wiki | Developer | `/wiki S002 S003` | source notes and topic pages (lines marked unchecked) |
 | 4 Review claims | Tester | `accept C002, C003` | accepted claims |
+| 4b Sync the wiki | Developer | `/wiki` | accepted claims in, rejected claims out |
+| *any time* | Anyone | `/ask <question>` | an answer from the wiki, with citations |
 | 5 Draft | PM | `/draft knowledge gaps E3 I3` | a chapter draft |
 | 6 Check | Tester | `/check` | a pass/fail report on C1–C7 |
+| 6b Check the wiki | Tester | `/lint` or `/lint fix` | a wiki health report |
 | 7 Publish | Team and deployer | *(nothing)* | the handbook page on the course site |
 | 8 Save | whoever ran the session | `/save` | a new session-log entry |
 | 9 Share | the same person | *(commit and push, Part 3)* | an updated GitHub repository |
@@ -125,6 +130,19 @@ Type `/appraise` followed by candidate numbers or web addresses, for example `/a
 
 If it cannot find the exact sentence, it creates no claim.
 
+### Step 3b · `/wiki S002 S003`: ingest (Developer)
+
+Type `/wiki` followed by the source IDs that /appraise just saved. For each source, the assistant reads the saved text in `sources/` and first **pauses**. It tells you who wrote and paid for the source, what was actually read, its main points, where it disagrees with the wiki, and which pages it plans to write. **Read this before you say "go ahead"**: a wrong reading costs least when it is caught here. Then it:
+
+- writes a **source note** in `wiki/source-notes/`: author, who paid, what was read, who chose it, a summary, the appraisal and the accepted claims;
+- writes **organisation pages** for the publisher and any firm or body the source describes;
+- updates every **topic page** the source touches, and records disagreements under **Debates** instead of overwriting;
+- updates `wiki/index.md` and adds a line to `wiki/log.md`.
+
+**PDFs and videos:** if /appraise cannot read a source, save its text by hand (a PDF's pages, or a YouTube transcript), following "Adding a source by hand" in `wiki/README.md`.
+
+Facts that no one has checked yet are marked `[S012, unchecked]`. They show what a source contains and which claims may be worth appraising, but **they are not evidence**. /wiki never goes to the web; it reads only texts already saved in `sources/`.
+
 ### Step 4 · Review the claims (Tester)
 
 Open `logs/evidence-log.md`. For each **proposed** row:
@@ -142,6 +160,26 @@ The assistant updates the status and fills in "Checked by" with your name and th
 
 - Aim for **at least three accepted claims per sub-question**. `/draft` warns you if there are fewer.
 - Our Dutch-reading member checks every Dutch sentence that ends up in the chapter, because the translations are machine-assisted.
+
+### Step 4b · `/wiki`: sync (Developer)
+
+After the tester has accepted or rejected claims, type `/wiki` with nothing after it. The assistant brings the wiki in line with the evidence log:
+
+- each newly accepted claim goes onto its topic pages as `[C014, S012]`, replacing any unchecked line that said the same;
+- lines that rest on a rejected claim are removed;
+- the source notes, index and log are updated.
+
+### Any time · `/ask` (anyone)
+
+Type `/ask` followed by a question, for example `/ask what do we know about privacy as a barrier?`. The assistant answers from the wiki only, under three headings:
+
+- **Accepted evidence:** lines a chapter can use, by citing the evidence-log row;
+- **Not yet checked:** lines that need /appraise and the tester first;
+- **Unknown:** what we have no evidence for, with a suggested search.
+
+Every claim in the answer is followed by its citation and the page it came from. The log records the question, the pages read and the pages used, so you can always trace why an answer says what it says. If the answer is worth keeping, say **"save it"**. It is filed in `wiki/answers/` and linked from the topic pages it draws on.
+
+**Why bother?** The wiki shows at a glance what we already know, including what earlier chapters found that also fits this one, and what is still unknown. Read `wiki/index.md` or use `/ask` before you search or draft. In a chapter, cite the evidence-log row, never the wiki.
 
 ### Step 5 · `/draft` (PM)
 
@@ -194,6 +232,22 @@ The report is saved as `chapters/<same name>-check.md`. The assistant does not c
 | C7 | it says what AI drafted and what the team checked, with no confidential or identifiable company data |
 
 A chapter that fails C2, C3 or C7 is not published.
+
+### Step 6b · `/lint` (Tester, weekly)
+
+Type `/lint`. The assistant checks the wiki against the evidence log and the saved sources, and saves `wiki/lint-report.md`. It looks for:
+
+- **quotations that are not in the source**: every passage in quotation marks on a wiki page, and every exact passage in the evidence log, must be found word for word in the saved text;
+- lines without a citation;
+- claims cited in the wiki that are no longer accepted;
+- unchecked lines whose numbers or names are not in the source text;
+- unchecked lines that an accepted claim now covers;
+- broken links, pages nothing links to, and wrong counts in the index;
+- accepted claims not yet in the wiki;
+- sub-questions with no evidence, each with a suggested search;
+- pages that contradict each other.
+
+The verdict is **CLEAN** or **NEEDS FIXING**. `/lint` on its own changes nothing. `/lint fix` also repairs the mechanical problems: links, the index, and upgrading unchecked lines to accepted claims. What a fact says, contradictions and deletions are always your decision, through `/wiki` or by editing the page by hand.
 
 ### Step 7 · From draft to handbook page (Team and deployer)
 
@@ -275,8 +329,11 @@ If Git reports a **conflict** in a log file, open the file and keep both version
 | `/start` | nothing | `/start` | Says where we stopped and what is next |
 | `/search` | sub-question codes | `/search E2 I2` | Finds 6–10 candidate sources |
 | `/appraise` | candidate numbers or URLs | `/appraise 1 2 3` | Scores sources and proposes claims |
+| `/wiki` | source IDs, or nothing | `/wiki S002` or `/wiki` | With source IDs: ingests saved sources into the wiki. Empty: syncs the wiki with the evidence log |
+| `/ask` | a question | `/ask what do we know about privacy?` | Answers from the wiki with citations; say "save it" to keep the answer |
 | `/draft` | chapter and codes | `/draft knowledge gaps E3 I3` | Writes the chapter from accepted claims |
 | `/check` | a draft file, or nothing | `/check` | Tests the draft against C1–C7 |
+| `/lint` | nothing, or `fix` | `/lint` | Health check of the wiki; `fix` repairs links, the index and upgrades |
 | `/save` | nothing | `/save` | Writes the session-log entry |
 
 ### Plain sentences the assistant acts on
@@ -295,8 +352,8 @@ Ordinary questions are always fine. The assistant does not search, draft or chan
 | Role | Tasks |
 |---|---|
 | PM | `/start`; confirms the sub-questions; `/draft`; edits the text; writes any anonymised interview-evidence rows; checks weekly that the assistant's memory holds no names and no evidence |
-| Developer | `/search`; chooses candidates; `/appraise`; maintains the skills |
-| Tester | accepts or rejects claims; `/check`; opens three cited sources; arranges the outside jargon reader |
+| Developer | `/search`; chooses candidates; `/appraise`; `/wiki`; maintains the skills |
+| Tester | accepts or rejects claims; `/check`; `/lint`; opens three cited sources; arranges the outside jargon reader |
 | Deployer | publishes the approved page on the course site |
 
 ---

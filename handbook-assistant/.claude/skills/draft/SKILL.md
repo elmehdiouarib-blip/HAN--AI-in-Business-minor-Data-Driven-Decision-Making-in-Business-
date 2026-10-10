@@ -19,7 +19,7 @@ allowed-tools: Read, Write
    - Sources (table: ID · source · supports · who says it and why credible · limitation)
    - What our platform drafted, and what we checked
 3. End every factual sentence with its source ID, for example [S007]. Where evidence is missing, write "Evidence not found: …". Never fill a gap with fluent text.
-4. In the last section, list the claim IDs used, and leave "[team checks: …]" for the tester.
+4. In the last section, list the claim IDs used, and leave "[team checks: …]" for the tester. Also say which claims rest on field research and which on desk research. If there was no interview, add what the page cannot tell the owner because the firm itself was not asked.
 5. Save the chapter as `chapters/<chapter>-draft-<date>.md`.
 
-Do not use web search in this step.
+Do not use web search in this step, and do not take content from `wiki/`: it is never a source, and its unchecked lines are not evidence.
