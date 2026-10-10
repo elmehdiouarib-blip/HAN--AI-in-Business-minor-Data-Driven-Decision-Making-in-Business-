@@ -1,4 +1,4 @@
-> **DRAFT.** All claims used were accepted by the tester on 10 Oct 2026. Still to do before publication: a jargon check by one reader outside the team (C4), and confirmation of the Dutch translations. Evidence basis: **desk research only (plan B)**.
+> **DRAFT.** All claims used were accepted by the tester on 10 Oct 2026. Dutch translations confirmed. Still to do before publication: a jargon check by one reader outside the team (C4). Evidence basis: **desk research only (plan B)**.
 
 # What do firms like mine use AI for, and which use is worth trying first?
 
@@ -79,4 +79,5 @@ All five can start within 30 days.
 - **Field research and desk research.** Every claim on this page rests on desk research. None rests on field research: the interview has not taken place (plan B).
 - **What this page cannot tell the owner,** because the firm itself was not asked: how many orders it handles and what its ERP system records; which planning problem its own staff find most painful; and what it has already tried with AI.
 - **Checked by the team (tester, 10 Oct 2026):** accepted every claim used on this page against its saved source; opened S003, S007 and S008 and found that the cited passages matched.
-- **Still to do before publication:** a jargon check by one reader outside the team (C4), and confirmation of the Dutch translations of C008–C011, C023, C039, C040 and C042.
+- **Dutch translations** of C008–C011, C023, C039, C040 and C042 confirmed by the team's Dutch-reading member (10 Oct 2026).
+- **Still to do before publication:** a jargon check by one reader outside the team (C4).

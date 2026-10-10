@@ -74,4 +74,5 @@ All five can start within 30 days.
 - **Field research and desk research.** Every claim on this page rests on desk research. None rests on field research: the interview has not taken place (plan B).
 - **What this page cannot tell the owner,** because the firm itself was not asked: how reliable its delivery dates really are; which planning data its ERP system holds; how its staff use AI today; and what the firm itself says it needs.
 - **Checked by the team (tester, 10 Oct 2026):** accepted every claim used on this page against its saved source; opened S002, S005 and S008 and found that the cited passages matched. Rejected C027 and C028 (not used on this page).
-- **Still to do before publication:** a jargon check by one reader outside the team (C4), and confirmation of the Dutch translations of C002–C004, C006, C007, C017–C022 and C039–C041.
+- **Dutch translations** of C002–C004, C006, C007, C017–C022 and C039–C041 confirmed by the team's Dutch-reading member (10 Oct 2026).
+- **Still to do before publication:** a jargon check by one reader outside the team (C4).

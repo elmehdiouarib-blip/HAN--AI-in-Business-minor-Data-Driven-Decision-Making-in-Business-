@@ -34,5 +34,5 @@
 
 - Claude drafted the headline, the postcard text, the image prompt and the pitch, and found and checked the three sources.
 - The planner on the back is invented, and so is the 120-person firm. The 2035 scene is a picture, not a fact.
-- No image was generated yet. Use the prompt above, and say which tool made the image.
+- The illustrated postcard is `chapters/postcard-2035-china.html` (copy at the top of the repository: `Team08_10_Postcard_2035_China.html`). Claude drew its front as an SVG illustration. The image prompt above is an alternative for an image generator.
 - The team should check the sources and agree the pitch before Monday 12 October.

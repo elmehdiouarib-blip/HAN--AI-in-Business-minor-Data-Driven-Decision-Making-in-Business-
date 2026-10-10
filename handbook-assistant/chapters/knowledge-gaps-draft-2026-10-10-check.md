@@ -19,4 +19,4 @@ None. Unsourced sentences are labelled "Interpretation:", "Unknown:", "Comparabl
 ## Before publication
 
 1. One reader outside the team checks for jargon (C4).
-2. The Dutch-reading member confirms the Dutch translations.
+2. ~~The Dutch-reading member confirms the Dutch translations.~~ Done, 10 Oct 2026.
