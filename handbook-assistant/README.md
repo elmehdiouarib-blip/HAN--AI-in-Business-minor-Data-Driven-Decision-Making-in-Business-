@@ -62,6 +62,22 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 
 ---
 
+## The quickest way: one command
+
+```
+/answer E5 I5 making it last
+```
+
+The agent runs the whole question, from the owner's problem to a checked handbook page, and asks you to **click a choice** at every decision. Its recommendation is always first.
+
+1. Is this the owner's question? → *Yes*
+2. Which sources should I read? → tick the ones you want
+3. What goes into the wiki? → *All sources, as planned*, or choose
+4. Tester: which claims do you accept? → *My recommended set*, or claim by claim (the same as `/review`)
+5. What next? → *Save and push to GitHub*
+
+You get a handbook page that ends with **five first steps for the owner**. The steps below do the same thing one command at a time.
+
 ## Part 2 · The weekly cycle, step by step
 
 | Step | Who | You type | You get |

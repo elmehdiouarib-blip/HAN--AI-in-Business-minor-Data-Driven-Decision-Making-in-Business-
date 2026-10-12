@@ -22,7 +22,8 @@ When the build plan exists, add a line `@docs/build-plan.md` above. If a request
 - Interview material is **not** in this project and never will be.
 
 ## Skills (the team types them; see .claude/skills)
-/start · /search · /add · /appraise · /wiki · /ask · /draft · /check · /lint · /save
+/answer (the whole question in one command) · /review (tester) · /start · /search · /add · /appraise · /wiki · /ask · /draft · /check · /lint · /save
+At every decision (which sources to read, what goes into the wiki, which claims to accept), give clickable choices with AskUserQuestion, your recommendation first. Never decide for the team.
 Run a skill when a team member types it, or when a team member asks you to run several steps in a row. Even then, always stop at the two human checks: the tester accepts or rejects claims, and a team member gives the go-ahead after the /wiki pause. Never publish anything.
 
 ## Evidence rules
