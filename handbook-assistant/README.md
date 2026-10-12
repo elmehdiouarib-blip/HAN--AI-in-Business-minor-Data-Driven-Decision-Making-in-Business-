@@ -71,7 +71,7 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 | 2 Search | Developer | `/search E3 I3` | a list of 6–10 candidate sources |
 | 2b Add files | Developer | `/add <addresses or files>` | PDFs, Word, slides, sheets or video transcripts saved as source texts |
 | 3 Appraise | Developer | `/appraise 1 2 4` | proposed claims in the evidence log |
-| 3b Ingest into the wiki | Developer | `/wiki S002 S003` | source notes and topic pages (lines marked unchecked) |
+| 3b Ingest into the wiki | Developer | `/wiki E5 I5` (every source for the question) | source notes and topic pages (lines marked unchecked) |
 | 4 Review claims | Tester | `accept C002, C003` | accepted claims |
 | 4b Sync the wiki | Developer | `/wiki` | accepted claims in, rejected claims out |
 | *any time* | Anyone | `/ask <question>` | an answer from the wiki, with citations |

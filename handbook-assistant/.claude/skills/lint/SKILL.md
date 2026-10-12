@@ -9,7 +9,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 # /lint $ARGUMENTS
 
 1. Read `wiki/index.md`, `wiki/log.md`, every page in `wiki/topics/`, `wiki/organisations/`, `wiki/source-notes/` and `wiki/answers/`, `logs/evidence-log.md`, and the saved texts in `sources/` that the pages and rows cite.
-2. **Quotation check.** For every passage in quotation marks on a wiki page, and every "Exact passage" in the evidence log, search the cited saved text in `sources/` for that exact wording (use Grep with the literal text; ignore differences in line breaks and spacing only). Report each passage that is not found, and each source that has no saved text to check against.
+2. **Quotation check.** For every passage in quotation marks on a wiki page, and every "Exact passage" in the evidence log, search the cited saved text in `sources/` for that exact wording (compare letters and digits in order; ignore only line breaks, spacing, line-end hyphenation from PDFs and the style of quotation marks). Report each passage that is not found, and each source that has no saved text to check against.
 3. Report, with the page and the line concerned:
    a. lines of fact with no citation;
    b. `[C###, S###]` lines whose claim is not `accepted` now, or is cited with the wrong source ID;

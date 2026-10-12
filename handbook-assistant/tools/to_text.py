@@ -194,6 +194,7 @@ def main():
     ap.add_argument("--title", default="", help="title, if the file does not carry one")
     ap.add_argument("--pages", default="", help="PDF page range, e.g. 3-12")
     ap.add_argument("--short-name", default="", help="short name for the file, e.g. oecd-d4sme-2026")
+    ap.add_argument("--address", default="", help="the original web address, when converting a file you downloaded")
     args = ap.parse_args()
     src = args.source
 
@@ -220,7 +221,7 @@ def main():
         if not os.path.exists(src):
             stop(f"file not found: {src}")
         data = open(src, "rb").read()
-        address = f"local file: {os.path.basename(src)}"
+        address = args.address or f"local file: {os.path.basename(src)}"
 
     fmt, (title, text, read) = convert(src, data, args.pages or None)
     title = args.title or title or os.path.basename(src.split("?")[0])
