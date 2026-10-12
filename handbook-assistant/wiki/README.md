@@ -8,7 +8,7 @@ Our **LLM wiki**: linked pages that the assistant writes and keeps up to date, s
 
 | Layer | Course template | Ours | Who writes it |
 |---|---|---|---|
-| Raw sources | `raw/` | `sources/S###-*.md`, the saved text of each source | /appraise, or a team member by hand. Never edited afterwards: they are the evidence. |
+| Raw sources | `raw/` | `sources/S###-*.md`, the saved text of each source | /add or /appraise (any format), or a team member by hand. Never edited afterwards: they are the evidence. |
 | The wiki | `wiki/` | `wiki/`: source notes, organisation pages, topic pages, saved answers, index, log | The assistant, through /wiki and /ask. We read and check it. |
 | The rules | `AGENTS.md` | `CLAUDE.md` and this file | The team, with the assistant |
 
@@ -51,9 +51,25 @@ Our **LLM wiki**: linked pages that the assistant writes and keeps up to date, s
 
 Naming: lower case, words joined by hyphens; source notes start with their source ID (`S012-oecd-smes-ai-2026.md`). The folders appear when the first page is written. Browse on GitHub, or open the folder in Obsidian (optional).
 
-## Adding a source by hand (PDF, video, blocked page)
+## Adding sources of any format: `/add`
 
-When /appraise cannot read a source, a team member saves its text as `sources/S###-<short-name>.md`, using the next free source ID in the evidence log, with this header:
+Type `/add` with web addresses or file paths, for example `/add https://… C:\Downloads\report.pdf slides.pptx talk.vtt`. It turns each one into a text in `sources/` with the standard header, using `tools/to_text.py`:
+
+| Format | How it comes in |
+|---|---|
+| Web page | Visible text of the page |
+| PDF report | Text of every page (or `--pages 3-12`), with page markers |
+| Word (.docx), PowerPoint (.pptx), Excel (.xlsx) | Paragraphs; text per slide; cell values per sheet |
+| CSV, TSV, text, Markdown, JSON | As they are |
+| Published video | Its transcript or subtitle file (.vtt, .srt), with timestamps removed |
+| Scanned PDF or image | No text layer: the assistant may type out passages, marked "machine-transcribed" |
+| **Audio and video files** | **Refused.** Interview recordings must never enter. |
+
+Then run `/appraise S###` and `/wiki S###`. PDF support needs `pypdf`: run `python -m pip install -r requirements.txt` once.
+
+## Adding a source by hand (fallback)
+
+If `/add` cannot read a source at all, a team member saves its text as `sources/S###-<short-name>.md`, using the next free source ID across the evidence log and `sources/`, with this header:
 
 ```markdown
 # S015 · <Publisher>, <title>

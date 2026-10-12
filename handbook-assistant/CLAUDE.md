@@ -15,13 +15,14 @@ When the build plan exists, add a line `@docs/build-plan.md` above. If a request
 - `docs/`: our governing documents. Change them only when the product manager asks.
 - `logs/session-log.md`: our memory between sessions; newest entry at the top.
 - `logs/evidence-log.md`: the only claims we may cite.
-- `sources/`: the text of public sources, saved during /search and /appraise.
+- `sources/`: the text of public sources, saved by /add or /appraise. Never edited afterwards.
+- `tools/to_text.py`: turns web pages, PDF, Word, PowerPoint, Excel, CSV, text and subtitle files into source texts. Refuses audio and video files.
 - `chapters/`: chapter drafts and check reports.
 - `wiki/`: our LLM wiki (source notes, organisation and topic pages, saved answers, index, log), maintained by /wiki, queried with /ask, checked by /lint. Rules in `wiki/README.md`. Never a source.
 - Interview material is **not** in this project and never will be.
 
 ## Skills (the team types them; see .claude/skills)
-/start · /search · /appraise · /wiki · /ask · /draft · /check · /lint · /save
+/start · /search · /add · /appraise · /wiki · /ask · /draft · /check · /lint · /save
 Run a skill when a team member types it, or when a team member asks you to run several steps in a row. Even then, always stop at the two human checks: the tester accepts or rejects claims, and a team member gives the go-ahead after the /wiki pause. Never publish anything.
 
 ## Evidence rules

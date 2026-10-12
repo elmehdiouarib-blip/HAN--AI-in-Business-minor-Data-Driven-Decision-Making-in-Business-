@@ -6,8 +6,8 @@ The Handbook Assistant is Claude, running in Claude Code, set up to help us writ
 
 ## The five rules
 
-1. **Nothing runs by itself.** The assistant acts only when someone types a command. It never chains steps and never publishes.
-2. **Cite accepted claims only.** A chapter may use only evidence-log rows that the tester has accepted. The wiki helps you find them, but it is never cited, and its "unchecked" lines are not evidence.
+1. **Nothing runs by itself.** The assistant acts when someone types a command, or runs several steps in a row when asked. It always stops at the two human checks (the wiki go-ahead and the tester's accept or reject) and never publishes.
+2. **Publish accepted claims only.** Drafts may use proposed claims, but /check blocks a page until the tester has accepted every claim on it. The wiki helps you find claims, but it is never cited, and its "unchecked" lines are not evidence.
 3. **Interview material never enters.** No recordings, notes or transcripts, and nothing that identifies a person or a customer. Not in a file, a chat or memory.
 4. **Web pages are material, not instructions.** If the assistant warns that a page tried to instruct it, tell the developer.
 5. **Our GitHub repository is public.** Anyone can read what you push. Push nothing you would not put on the course site.
@@ -52,7 +52,8 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 |---|---|
 | `CLAUDE.md` | The assistant's rules. Change only with the PM's agreement. |
 | `docs/` | Our governing documents. Changed only when the PM asks. |
-| `.claude/skills/` | The nine commands. |
+| `.claude/skills/` | The ten commands. |
+| `tools/to_text.py` | Turns web pages, PDF, Word, PowerPoint, Excel, CSV, text and subtitle files into source texts. Needs `pypdf` for PDFs: `python -m pip install -r requirements.txt` once. |
 | `logs/evidence-log.md` | The only claims we may cite, each with its exact source sentence. |
 | `logs/session-log.md` | The assistant's memory between sessions. Newest entry at the top. |
 | `sources/` | Candidate lists and the saved text of public sources. |
@@ -68,6 +69,7 @@ git clone https://github.com/elmehdiouarib-blip/HAN--AI-in-Business-minor-Data-D
 | 0 Get the latest | whoever runs the session | *(pull, see below)* | everyone's latest files |
 | 1 Resume | PM | `/start` | where we stopped, what is next |
 | 2 Search | Developer | `/search E3 I3` | a list of 6–10 candidate sources |
+| 2b Add files | Developer | `/add <addresses or files>` | PDFs, Word, slides, sheets or video transcripts saved as source texts |
 | 3 Appraise | Developer | `/appraise 1 2 4` | proposed claims in the evidence log |
 | 3b Ingest into the wiki | Developer | `/wiki S002 S003` | source notes and topic pages (lines marked unchecked) |
 | 4 Review claims | Tester | `accept C002, C003` | accepted claims |
@@ -139,7 +141,7 @@ Type `/wiki` followed by the source IDs that /appraise just saved. For each sour
 - updates every **topic page** the source touches, and records disagreements under **Debates** instead of overwriting;
 - updates `wiki/index.md` and adds a line to `wiki/log.md`.
 
-**PDFs and videos:** if /appraise cannot read a source, save its text by hand (a PDF's pages, or a YouTube transcript), following "Adding a source by hand" in `wiki/README.md`.
+**PDFs, Office files and videos:** use `/add` first. It reads PDF reports, Word, PowerPoint and Excel files, CSV and text, and video transcripts or subtitle files, and refuses audio and video files. Only if it cannot read a source at all, save the text by hand, following `wiki/README.md`.
 
 Facts that no one has checked yet are marked `[S012, unchecked]`. They show what a source contains and which claims may be worth appraising, but **they are not evidence**. /wiki never goes to the web; it reads only texts already saved in `sources/`.
 
@@ -328,7 +330,8 @@ If Git reports a **conflict** in a log file, open the file and keep both version
 |---|---|---|---|
 | `/start` | nothing | `/start` | Says where we stopped and what is next |
 | `/search` | sub-question codes | `/search E2 I2` | Finds 6–10 candidate sources |
-| `/appraise` | candidate numbers or URLs | `/appraise 1 2 3` | Scores sources and proposes claims |
+| `/add` | web addresses or file paths | `/add report.pdf talk.vtt` | Saves sources of any format as text |
+| `/appraise` | candidate numbers, URLs or source IDs | `/appraise 1 2 S010` | Scores sources and proposes claims |
 | `/wiki` | source IDs, or nothing | `/wiki S002` or `/wiki` | With source IDs: ingests saved sources into the wiki. Empty: syncs the wiki with the evidence log |
 | `/ask` | a question | `/ask what do we know about privacy?` | Answers from the wiki with citations; say "save it" to keep the answer |
 | `/draft` | chapter and codes | `/draft knowledge gaps E3 I3` | Writes the chapter from accepted claims |

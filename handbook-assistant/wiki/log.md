@@ -2,6 +2,7 @@
 
 One line per /wiki, /ask and /lint run. Newest at the top. For /ask: the question, the pages read and the pages used.
 
+- 12 Oct 2026 · set-up · New /add command and tools/to_text.py: sources can now be web pages, PDF reports, Word, PowerPoint, Excel, CSV, text, JSON and video transcripts or subtitle files. Audio and video files are refused. Tested on two real PDFs (62 and 50 pages), a Word file, a web page, a subtitle file and a web address.
 - 10 Oct 2026 · /lint · CLEAN: 22 pages; 39 of 39 accepted claims on topic pages; all quotations and 41 of 41 evidence-log passages found in saved sources. Gaps: E1, I1, I2, E5, I5.
 - 10 Oct 2026 · /wiki (sync) · 39 accepted claims placed as [C###, S###]; C027 and C028 rejected and kept out; 0 lines removed.
 - 10 Oct 2026 · /wiki S002–S009 (go-ahead from the team) · sources read: 8 · pages created: 8 source notes, 7 organisation pages, 7 topic pages · index rewritten · debates recorded: 3.
